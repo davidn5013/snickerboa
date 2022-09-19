@@ -7,7 +7,7 @@ import "fmt"
 // LastEdit show last time snickerboa was change
 // Manual change for now
 func LastEdit() {
-	fmt.Println("This hello was last edit 20220919 17:24:57")
+	fmt.Println("This hello was last edit 20220919 18:38:39")
 }
 
 // Hello print "Hello from snickerboa"
