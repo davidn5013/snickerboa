@@ -2,8 +2,9 @@
 
 (or for short boa)
 
-Golang package with func for any use
-Just a beginner try his best to create a open source package for Go
+Golang package with functions for any use.
+
+Just a beginner doing his best to create a open source package for Go
 
 ## Usage
 
