@@ -37,6 +37,6 @@ go: downloading github.com/davidn5013/snickerboa...
 - Spellchecking is very much appreciated
 
 And again bare with me I'am a beginner 
-And conduct your self as prober person all is good
+And conduct yourself as a proper person and all is good
 
 / David
