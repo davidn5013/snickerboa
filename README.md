@@ -1,6 +1,9 @@
-# snickerboa (short boa)
+# snickerboa 
+
+(or for shortcut boa)
 
 Golang package with func for any use
+Just a beginner try his best to create a open source package for Go
 
 ## Usage
 
