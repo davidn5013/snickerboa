@@ -1,0 +1,2 @@
+// string part
+package davidstoolbox
