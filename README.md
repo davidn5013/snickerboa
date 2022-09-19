@@ -27,7 +27,7 @@ go: downloading github.com/davidn5013/snickerboa...
 ## Progress
 
 - Added Hello() for testing
-- Add some file for orginizing
+- Add some files for orginizing
 - SumofPrimesUntil(n) my solution to [project euler 010](https://projecteuler.net/problem=10)
 
 ## Contribut
