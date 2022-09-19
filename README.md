@@ -1,11 +1,31 @@
-# snickerboa
+# snickerboa (short boa)
 
 Golang package with func for any use
+
+## Usage
+
+Use function like this
+
+```Go
+import( 
+        boa "github.com/davidn5013/snickerboa"
+)
+...
+
+x := boa.SumofPrimesUntil(n)
+```
+
+```Text
+> go mod tidy
+go: finding module for package github.com/davidn5013/snickerboa
+go: downloading github.com/davidn5013/snickerboa...
+```
 
 ## Progress
 
 - Added Hello() for testing
 - Add some file for orginizing
+- SumofPrimesUntil(n) my solution to [project euler 010](https://projecteuler.net/problem=10)
 
 ## Contribut
 
