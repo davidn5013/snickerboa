@@ -8,7 +8,7 @@ import (
 
 // sumofPrimesUntil sums all primenumber upp to n
 // Example 10 = 17
-func sumofPrimesUntil(n int) (sumPri uint64) {
+func SumofPrimesUntil(n int) (sumPri uint64) {
 	p := primes.Sieve(n)
 	for i := 0; i < len(p); i++ {
 		sumPri = sumPri + uint64(p[i])
