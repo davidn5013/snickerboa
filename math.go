@@ -39,7 +39,7 @@ func CheckPalindrome(testString string) bool {
 // pythTripProd A Pythagorean triplet is a set of three natural numbers
 // For example, 32 + 42 = 9 + 16 = 25 = 52
 // https://projecteuler.net/problem=9
-func pythTripProd(n int) (a, b, c, prod int) {
+func PythTripProd(n int) (a, b, c, prod int) {
 	for a = 1; a < (n / 3); a++ {
 		for b = 1; b < (n / 2); b++ {
 			c = n - b - a
