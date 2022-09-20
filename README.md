@@ -11,12 +11,19 @@ Just a beginner doing his best to create a open source package for Go
 Use function like this
 
 ```Go
-import( 
-        boa "github.com/davidn5013/snickerboa"
-)
-...
+package main
 
-x := boa.SumofPrimesUntil(n)
+import (
+	"fmt"
+
+	boa "github.com/davidn5013/snickerboa"
+)
+
+func main() {
+	boa.OneArgChkOrExit("Missing argument")
+	n := boa.Arg1ToIntOrExit()
+	fmt.Println(boa.SumofPrimesUntil(n))
+}
 ```
 
 ```Text
@@ -25,11 +32,15 @@ go: finding module for package github.com/davidn5013/snickerboa
 go: downloading github.com/davidn5013/snickerboa...
 ```
 
-## Progress
+## FunctionsProgress
 
-- Added Hello() for testing
-- Add some files for orginizing
-- SumofPrimesUntil(n) my solution to [project euler 010](https://projecteuler.net/problem=10)
+- Hello() print Hello from snickerboa for testing
+- LastEdit() giv last edit date
+- SumofPrimesUntil(int) my solution to [project euler 10](https://projecteuler.net/problem=10)
+- CheckPalindrome(string) check of a string is a palindrome use strconv.Itoa to checknumbers [project euler 4](https://projecteuler.net/problem=4)
+- PythTripProd(int) A Pythagorean triplet is a set of three natural numbers, a < b < c, for which, [project euler 9](https://projecteuler.net/problem=9)
+- OneArgChkOrExit(string) check for one argument if not exit
+- Arg1ToIntOrExit() (int) converts args[1] to int
 
 ## Contribut
 
