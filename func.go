@@ -1,12 +1,34 @@
-// Golang package with func for any use
-// math part
+// Package snickerboa is a for func for any use
 package snickerboa
 
 import (
+	"fmt"
+	"os"
+	"strconv"
+
 	"github.com/fxtlabs/primes"
 )
 
-// sumofPrimesUntil sums all primenumber upp to n
+//
+//		I N F O
+//
+
+// LastEdit show last time snickerboa was change
+// Manual change for now
+func LastEdit() {
+	fmt.Println("This hello was last edit 20220920 14:05:08")
+}
+
+// Hello print "Hello from snickerboa"
+func Hello() {
+	fmt.Println("Hello from snickerboa")
+}
+
+//
+//		M A T H
+//
+
+// SumofPrimesUntil sums all primenumber upp to n
 // Example 10 = 17
 func SumofPrimesUntil(n int) (sumPri uint64) {
 	p := primes.Sieve(n)
@@ -17,7 +39,7 @@ func SumofPrimesUntil(n int) (sumPri uint64) {
 	return sumPri
 }
 
-// checkPalindrome check if a string can be read back to front
+// CheckPalindrome check if a string can be read back to front
 // thanks for the steal (https://www.eventslooped.com/posts/interview-question-in-go-2/)
 func CheckPalindrome(testString string) bool {
 	isPalindrome := true
@@ -36,7 +58,7 @@ func CheckPalindrome(testString string) bool {
 	return isPalindrome
 }
 
-// pythTripProd A Pythagorean triplet is a set of three natural numbers
+// PythTripProd A Pythagorean triplet is a set of three natural numbers
 // For example, 32 + 42 = 9 + 16 = 25 = 52
 // https://projecteuler.net/problem=9
 func PythTripProd(n int) (a, b, c, prod int) {
@@ -50,4 +72,28 @@ func PythTripProd(n int) (a, b, c, prod int) {
 		}
 	}
 	return 0, 0, 0, 0
+}
+
+//
+//		s u p p o r t
+//
+
+// OneArgChkOrExit check for 1 argument and
+// exit print s and exit if none
+func OneArgChkOrExit(s string) {
+	if len(os.Args) < 2 {
+		fmt.Println(s)
+		os.Exit(1)
+	}
+}
+
+// Arg1ToIntOrExit convert args[1] to int
+// exit with prints args[1] is not a number on fail
+func Arg1ToIntOrExit() int {
+	v, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		fmt.Printf("%s is not a number", os.Args[1])
+		os.Exit(1)
+	}
+	return v
 }
