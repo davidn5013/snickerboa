@@ -45,6 +45,11 @@ func CheckPalindrome(testString string) bool {
 	isPalindrome := true
 	sLength := len(testString)
 
+	// string of odd length can't be palindrome
+	if sLength%2 != 0 {
+		return false
+	}
+
 	for i := 0; i < sLength/2; i++ {
 		currCharFwd := testString[i]           // character to compare going forward
 		currCharBwd := testString[sLength-1-i] // character to compare going from the end
