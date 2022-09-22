@@ -3,8 +3,10 @@ package snickerboa
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/fxtlabs/primes"
 )
@@ -101,4 +103,20 @@ func Arg1ToIntOrExit() int {
 		os.Exit(1)
 	}
 	return v
+}
+
+// FileToStr Read a whole file to one string
+func FileToStr(f string) (s string) {
+	b, err := ioutil.ReadFile(f)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	return string(b)
+}
+
+// FileToFields Read a whole file to one slice of string
+// using space and newline (strings.Fields delimit)
+func FileToFields(f string) []string {
+	return strings.Fields(FileToStr(f))
 }
