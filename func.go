@@ -4,6 +4,7 @@ package snickerboa
 import (
 	"fmt"
 	"io/ioutil"
+	"math/big"
 	"os"
 	"strconv"
 	"strings"
@@ -18,7 +19,7 @@ import (
 // LastEdit show last time snickerboa was change
 // Manual change for now
 func LastEdit() {
-	fmt.Println("This hello was last edit 20220920 14:05:08")
+	fmt.Println("This hello was last edit 20220924 19:55:20")
 }
 
 // Hello print "Hello from snickerboa"
@@ -79,6 +80,24 @@ func PythTripProd(n int) (a, b, c, prod int) {
 		}
 	}
 	return 0, 0, 0, 0
+}
+
+// AddBigStr take a string array of of big number sum them upp
+// returns a string
+func AddBigStr(arrStrNumber []string) (string, error) {
+	x := new(big.Int)
+	s := new(big.Int)
+
+	for _, c := range arrStrNumber {
+		if len(c) > 0 {
+			_, err := fmt.Sscan(c, x)
+			if err != nil {
+				return "", err
+			}
+			s.Add(x, s)
+		}
+	}
+	return s.String(), nil
 }
 
 //
