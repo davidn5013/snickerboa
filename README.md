@@ -39,10 +39,11 @@ go: downloading github.com/davidn5013/snickerboa...
 - SumofPrimesUntil(int) my solution to [project euler 10](https://projecteuler.net/problem=10)
 - CheckPalindrome(string) check of a string is a palindrome use strconv.Itoa to checknumbers [project euler 4](https://projecteuler.net/problem=4)
 - PythTripProd(int) A Pythagorean triplet is a set of three natural numbers, a < b < c, for which, [project euler 9](https://projecteuler.net/problem=9)
+- AddBigStr([]string) string Add big number in strings
 - OneArgChkOrExit(string) check for one argument if not exit
 - Arg1ToIntOrExit() (int) converts args[1] to int
 
-## Contribut
+- ## Contribut
 
 - If you want to contribut it fine, beginner friendly
 - Spellchecking is very much appreciated
