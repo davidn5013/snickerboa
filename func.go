@@ -8,6 +8,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/fxtlabs/primes"
 )
@@ -138,4 +139,17 @@ func FileToStr(f string) (s string) {
 // using space and newline (strings.Fields delimit)
 func FileToFields(f string) []string {
 	return strings.Fields(FileToStr(f))
+}
+
+// SetTimer Set a timmer and return a func
+// that returns time.Duration from the timer
+// func main() {
+// stopTimer := SetTimer()
+// ...
+// fmt.Printf("Elapsed time:%v\n".stopTimer())
+func SetTimer() func() time.Duration {
+	t := time.Now()
+	return func() time.Duration {
+		return time.Since(t)
+	}
 }
