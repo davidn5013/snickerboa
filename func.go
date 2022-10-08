@@ -9,6 +9,7 @@ package snickerboa
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"math/big"
 	"os"
 	"strconv"
@@ -161,5 +162,24 @@ func SetTimer() func() time.Duration {
 	t := time.Now()
 	return func() time.Duration {
 		return time.Since(t)
+	}
+}
+
+// Quiet is func for test function and supressing output
+// In test function set first line to
+//
+// defer quiet()()
+func Quiet() func() {
+	null, _ := os.Open(os.DevNull)
+	sout := os.Stdout
+	serr := os.Stderr
+	os.Stdout = null
+	os.Stderr = null
+	log.SetOutput(null)
+	return func() {
+		defer null.Close()
+		os.Stdout = sout
+		os.Stderr = serr
+		log.SetOutput(os.Stderr)
 	}
 }
