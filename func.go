@@ -1,4 +1,4 @@
-// Package snickerboa is a for func for any use
+// Package snickerboa toolsbox for any type for func
 package snickerboa
 
 import (
