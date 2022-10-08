@@ -1,4 +1,9 @@
-// Package snickerboa toolsbox for any type for func
+// Package snickerboa is toolsbox for anything in Go - proj euler and more
+//
+// Created as an example of help module. Have some math function and some
+// function for simple argument and file handling.
+//
+// https://github.com/davidn5013/snickerboa
 package snickerboa
 
 import (
@@ -20,7 +25,7 @@ import (
 // LastEdit show last time snickerboa was change
 // Manual change for now
 func LastEdit() {
-	fmt.Println("This hello was last edit 20220924 19:55:20")
+	fmt.Println("This hello was last edit 20221008 18:47:46")
 }
 
 // Hello print "Hello from snickerboa"
@@ -44,7 +49,9 @@ func SumofPrimesUntil(n int) (sumPri uint64) {
 }
 
 // CheckPalindrome check if a string can be read back to front
-// thanks for the steal (https://www.eventslooped.com/posts/interview-question-in-go-2/)
+// thanks for the steal
+//
+// https://www.eventslooped.com/posts/interview-question-in-go-2/
 func CheckPalindrome(testString string) bool {
 	isPalindrome := true
 	sLength := len(testString)
@@ -69,6 +76,7 @@ func CheckPalindrome(testString string) bool {
 
 // PythTripProd A Pythagorean triplet is a set of three natural numbers
 // For example, 32 + 42 = 9 + 16 = 25 = 52
+//
 // https://projecteuler.net/problem=9
 func PythTripProd(n int) (a, b, c, prod int) {
 	for a = 1; a < (n / 3); a++ {
@@ -83,8 +91,9 @@ func PythTripProd(n int) (a, b, c, prod int) {
 	return 0, 0, 0, 0
 }
 
-// AddBigStr take a string array of of big number sum them upp
-// returns a string
+// AddBigStr take an array of strings with numbers and
+// sum then up then returns a string or error if the
+// strings can't be converted
 func AddBigStr(arrStrNumber []string) (string, error) {
 	x := new(big.Int)
 	s := new(big.Int)
@@ -106,7 +115,7 @@ func AddBigStr(arrStrNumber []string) (string, error) {
 //
 
 // OneArgChkOrExit check for 1 argument and
-// exit print s and exit if none
+// exit program if none or return args as string
 func OneArgChkOrExit(s string) {
 	if len(os.Args) < 2 {
 		fmt.Println(s)
@@ -143,6 +152,7 @@ func FileToFields(f string) []string {
 
 // SetTimer Set a timmer and return a func
 // that returns time.Duration from the timer
+//
 // func main() {
 // stopTimer := SetTimer()
 // ...
