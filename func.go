@@ -23,17 +23,6 @@ import (
 //		I N F O
 //
 
-// LastEdit show last time snickerboa was change
-// Manual change for now
-func LastEdit() {
-	fmt.Println("This hello was last edit 20221008 18:47:46")
-}
-
-// Hello print "Hello from snickerboa"
-func Hello() {
-	fmt.Println("Hello from snickerboa")
-}
-
 //
 //		M A T H
 //
