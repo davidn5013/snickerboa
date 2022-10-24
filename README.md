@@ -6,6 +6,7 @@ Golang package with functions for any use.
 
 Just a beginner doing his best to create a open source package for Go
 
+
 ## Usage
 
 Use function like this
