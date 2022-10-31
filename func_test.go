@@ -58,3 +58,10 @@ func TestAddBigStr(t *testing.T) {
 		t.Errorf("got false wanted 4 witdh 99 9:s and 8 after gut %s", str)
 	}
 }
+
+func TestFactorial(t *testing.T) {
+	v := Factorial(5)
+	if v != 120 {
+		t.Errorf("got false wanted 120 gut %d", v)
+	}
+}

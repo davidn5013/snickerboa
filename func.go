@@ -8,7 +8,6 @@ package snickerboa
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"math/big"
 	"os"
@@ -126,7 +125,7 @@ func Arg1ToIntOrExit() int {
 
 // FileToStr Read a whole file to one string
 func FileToStr(f string) (s string) {
-	b, err := ioutil.ReadFile(f)
+	b, err := os.ReadFile(f)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -171,4 +170,42 @@ func Quiet() func() {
 		os.Stderr = serr
 		log.SetOutput(os.Stderr)
 	}
+}
+
+// Factorial with overflow check panics
+func Factorial(number int) uint64 {
+	var result uint64 = 1
+	if number < 0 {
+	} else {
+		for i := 1; i <= number; i++ {
+			result = uint64(mul64p(int64(result), int64(i)))
+		}
+	}
+	return result
+}
+
+// mul64p is the unchecked panicing version of Mul64
+// used by Factorial()
+func mul64p(a, b int64) int64 {
+	r, ok := mul64(a, b)
+	if !ok {
+		panic("multiplication overflow")
+	}
+	return r
+}
+
+// mul64 performs * operation on two int64 operands
+// returning a result and status
+// Used by mul64p()
+func mul64(a, b int64) (int64, bool) {
+	if a == 0 || b == 0 {
+		return 0, true
+	}
+	c := a * b
+	if (c < 0) == ((a < 0) != (b < 0)) {
+		if c/b == a {
+			return c, true
+		}
+	}
+	return c, false
 }
