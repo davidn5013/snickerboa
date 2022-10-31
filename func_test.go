@@ -2,6 +2,8 @@
 package snickerboa
 
 import (
+	"fmt"
+	"math/big"
 	"testing"
 )
 
@@ -65,3 +67,12 @@ func TestFactorial(t *testing.T) {
 		t.Errorf("got false wanted 120 gut %d", v)
 	}
 }
+
+func TestFactorialBig(t *testing.T) {
+	v := FactorialBig(big.NewInt(50))
+	if fmt.Sprintf("%d", v) != "30414093201713378043612608166064768844377641568960512000000000000" {
+		t.Errorf("got false gut %d", v)
+	}
+}
+
+// 30414093201713378043612608166064768844377641568960512000000000000
