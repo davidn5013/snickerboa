@@ -11,6 +11,7 @@ import (
 	"log"
 	"math/big"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -217,4 +218,11 @@ func mul64(a, b int64) (int64, bool) {
 		}
 	}
 	return c, false
+}
+
+// SortString input "ÖÄÅöäåabcABC" output "ABCabcÄÅÖäåö"
+func SortString(w string) string {
+	s := strings.Split(w, "")
+	sort.Strings(s)
+	return strings.Join(s, "")
 }

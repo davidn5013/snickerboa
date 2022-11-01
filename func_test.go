@@ -75,4 +75,11 @@ func TestFactorialBig(t *testing.T) {
 	}
 }
 
-// 30414093201713378043612608166064768844377641568960512000000000000
+// SortString input "ÖÄÅöäåabcABC" output "ABCabcÄÅÖäåö"
+func TestSortString(t *testing.T) {
+	gut := SortString("ÖÄÅöäåabcABC")
+	want := "ABCabcÄÅÖäåö"
+	if gut != want {
+		t.Errorf("gut %s wanted %s", gut, want)
+	}
+}
