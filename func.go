@@ -226,3 +226,14 @@ func SortString(w string) string {
 	sort.Strings(s)
 	return strings.Join(s, "")
 }
+
+// Make2D return matrix [][]anytime of size n,m using generics
+func Make2D[T any](n, m int) [][]T {
+	matrix := make([][]T, n)
+	rows := make([]T, n*m)
+	for i, startRow := 0, 0; i < n; i, startRow = i+1, startRow+m {
+		endRow := startRow + m
+		matrix[i] = rows[startRow:endRow:endRow]
+	}
+	return matrix
+}
