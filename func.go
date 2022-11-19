@@ -11,6 +11,7 @@ import (
 	"log"
 	"math/big"
 	"os"
+	"runtime"
 	"sort"
 	"strconv"
 	"strings"
@@ -236,4 +237,25 @@ func Make2D[T any](n, m int) [][]T {
 		matrix[i] = rows[startRow:endRow:endRow]
 	}
 	return matrix
+}
+
+// PrintMemUsage outputs the current, total and OS memory being used. As well as the number
+// of garage collection cycles completed.
+func PrintMemUsage() {
+	bToMb := func(b uint64) uint64 {
+		return b / 1024 / 1024
+	}
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	// For info on each, see: https://golang.org/pkg/runtime/#MemStats
+	fmt.Printf("Alloc = %v MiB", bToMb(m.Alloc))
+	fmt.Printf("\tTotalAlloc = %v MiB", bToMb(m.TotalAlloc))
+	fmt.Printf("\tSys = %v MiB", bToMb(m.Sys))
+	fmt.Printf("\tNumGC = %v\n", m.NumGC)
+}
+
+// PressEnter Wait for user to press return
+func PressEnter() {
+	fmt.Println("Press return")
+	fmt.Scanln()
 }
