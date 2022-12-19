@@ -167,7 +167,13 @@ func Quiet() func() {
 	os.Stderr = null
 	log.SetOutput(null)
 	return func() {
-		defer null.Close()
+		defer func() {
+			err := null.Close()
+			if err != nil {
+				fmt.Printf("Can't close file %s\n", err)
+				return
+			}
+		}()
 		os.Stdout = sout
 		os.Stderr = serr
 		log.SetOutput(os.Stderr)
@@ -257,5 +263,16 @@ func PrintMemUsage() {
 // PressEnter Wait for user to press return
 func PressEnter() {
 	fmt.Println("Press return")
-	fmt.Scanln()
+	_, err := fmt.Scanln()
+	if err != nil {
+		fmt.Printf("Error reading input %s\n", err)
+		return
+	}
+}
+
+const clsAnsicode = "\x1bc"
+
+// ClearScreen cls - Clears Terminal Screen using Ansi code Hex 1bc (444) 1b
+func ClearScreen() {
+	fmt.Print(clsAnsicode)
 }
