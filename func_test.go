@@ -4,10 +4,15 @@ package snickerboa
 import (
 	"fmt"
 	"math/big"
+	"strconv"
+	"strings"
 	"testing"
 )
 
 func TestCheckPalindrome(t *testing.T) {
+	if CheckPalindrome("AmanaplanacanalPanama") != true {
+		t.Errorf("got false on testin string A man..")
+	}
 	if CheckPalindrome("9009") != true {
 		t.Errorf("got false on testin 9009")
 	}
@@ -43,7 +48,7 @@ func TestPythTripProd(t *testing.T) {
 func TestSumofPrimesUntil(t *testing.T) {
 	v := SumofPrimesUntil(10)
 	if v != 17 {
-		t.Errorf("got false wanted 17 gut %d", v)
+		t.Errorf("got false wanted 17 got %d", v)
 	}
 }
 
@@ -57,29 +62,85 @@ func TestAddBigStr(t *testing.T) {
 		"29999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"})
 	if str !=
 		"49999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999998" {
-		t.Errorf("got false wanted 4 witdh 99 9:s and 8 after gut %s", str)
+		t.Errorf("got false wanted 4 witdh 99 9:s and 8 after got %s", str)
 	}
 }
 
 func TestFactorial(t *testing.T) {
 	v := Factorial(5)
 	if v != 120 {
-		t.Errorf("got false wanted 120 gut %d", v)
+		t.Errorf("got false wanted 120 got %d", v)
 	}
 }
 
 func TestFactorialBig(t *testing.T) {
 	v := FactorialBig(big.NewInt(50))
 	if fmt.Sprintf("%d", v) != "30414093201713378043612608166064768844377641568960512000000000000" {
-		t.Errorf("got false gut %d", v)
+		t.Errorf("got false got %d", v)
 	}
 }
 
 // SortString input "ÖÄÅöäåabcABC" output "ABCabcÄÅÖäåö"
 func TestSortString(t *testing.T) {
-	gut := SortString("ÖÄÅöäåabcABC")
+	got := SortString("ÖÄÅöäåabcABC")
 	want := "ABCabcÄÅÖäåö"
-	if gut != want {
-		t.Errorf("gut %s wanted %s", gut, want)
+	if got != want {
+		t.Errorf("got %s wanted %s", got, want)
+	}
+}
+
+func TestStrip(t *testing.T) {
+	got := Strip("A man, a plan, a canal: Panama åäöÅÄÖ")
+	want := "AmanaplanacanalPanama"
+	if got != want {
+		t.Errorf("got %s wanted %s", got, want)
+	}
+}
+
+func TestStripSwe(t *testing.T) {
+	got := StripSwe("A man, a plan, a canal: Panama åäöÅÄÖ")
+	want := "AmanaplanacanalPanamaåäöÅÄÖ"
+	if got != want {
+		t.Errorf("got %s wanted %s", got, want)
+	}
+}
+
+func TestMap(t *testing.T) {
+	s := []int{2, 4, 8, 11}
+	ds := Map(s, func(i int) string { return strconv.Itoa(2 * i) })
+	got := ds[0]
+	want := "2"
+	if got != want {
+		t.Errorf("got %v wanted %s\n", got, want)
+	}
+}
+
+func TestFilter(t *testing.T) {
+	s := []int{2, 4, 8, 11}
+	evens := Filter(s, func(i int) bool { return i%2 != 0 })
+	got := evens[0]
+	want := 11
+	if got != want {
+		t.Errorf("got %d wanted %d\n", got, want)
+	}
+}
+
+func TestReduce(t *testing.T) {
+	s := []int{2, 4, 8, 11}
+	got := Reduce(s, 1, func(a, b int) int { return a * b })
+	want := 704
+	if got != want {
+		t.Errorf("got %d wanted %d\n", got, want)
+	}
+}
+
+func TestFind(t *testing.T) {
+	people := []string{"Kent Beck", "Martin Fowler", "Chris James"}
+	got, found := Find(people, func(s string) bool {
+		return strings.Contains(s, "Chris")
+	})
+	want := true
+	if found != want {
+		t.Errorf("got %v wanted %v\n", got, want)
 	}
 }

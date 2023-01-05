@@ -21,10 +21,6 @@ import (
 )
 
 //
-//		I N F O
-//
-
-//
 //		M A T H
 //
 
@@ -43,26 +39,18 @@ func SumofPrimesUntil(n int) (sumPri uint64) {
 // thanks for the steal
 //
 // https://www.eventslooped.com/posts/interview-question-in-go-2/
-func CheckPalindrome(testString string) bool {
-	isPalindrome := true
-	sLength := len(testString)
+func CheckPalindrome(s string) bool {
+	s = strings.ToLower(s)
+	revS := ReverseStr(s)
+	return strings.Compare(s, revS) == 0
+}
 
-	// string of odd length can't be palindrome
-	if sLength%2 != 0 {
-		return false
+// ReverseStr Turn "David" "divaD"
+func ReverseStr(s string) (result string) {
+	for _, v := range s {
+		result = string(v) + result
 	}
-
-	for i := 0; i < sLength/2; i++ {
-		currCharFwd := testString[i]           // character to compare going forward
-		currCharBwd := testString[sLength-1-i] // character to compare going from the end
-
-		if currCharFwd != currCharBwd {
-			isPalindrome = false // we found a non-match, it's not a palindrome
-			break                // no need to compare further
-		}
-	}
-
-	return isPalindrome
+	return result
 }
 
 // PythTripProd A Pythagorean triplet is a set of three natural numbers
@@ -180,6 +168,38 @@ func Quiet() func() {
 	}
 }
 
+// Strip removes all non alfa number from string.
+// Removing everthing but a-z  A-Z  0-9
+func Strip(s string) string {
+	var result strings.Builder
+	result.Grow(len(s))
+	for i := 0; i < len(s); i++ {
+		b := s[i]
+		if ('a' <= b && b <= 'z') ||
+			('A' <= b && b <= 'Z') ||
+			('0' <= b && b <= '9') {
+			result.WriteByte(b)
+		}
+	}
+	return result.String()
+}
+
+// StripSwe removes all non alfa number in swedish from string.
+// Removing everthing but a-ö  A-Ö  0-9
+func StripSwe(s string) string {
+	var result strings.Builder
+	result.Grow(len(s))
+	for i := 0; i < len(s); i++ {
+		b := s[i]
+		if ('a' <= b && b <= 'ö') ||
+			('A' <= b && b <= 'Ö') ||
+			('0' <= b && b <= '9') {
+			result.WriteByte(b)
+		}
+	}
+	return result.String()
+}
+
 // FactorialBig factorial using bignumber
 func FactorialBig(x *big.Int) *big.Int {
 	n := big.NewInt(1)
@@ -234,17 +254,6 @@ func SortString(w string) string {
 	return strings.Join(s, "")
 }
 
-// Make2D return matrix [][]anytime of size n,m using generics
-func Make2D[T any](n, m int) [][]T {
-	matrix := make([][]T, n)
-	rows := make([]T, n*m)
-	for i, startRow := 0, 0; i < n; i, startRow = i+1, startRow+m {
-		endRow := startRow + m
-		matrix[i] = rows[startRow:endRow:endRow]
-	}
-	return matrix
-}
-
 // PrintMemUsage outputs the current, total and OS memory being used. As well as the number
 // of garage collection cycles completed.
 func PrintMemUsage() {
@@ -275,4 +284,93 @@ const clsAnsicode = "\x1bc"
 // ClearScreen cls - Clears Terminal Screen using Ansi code Hex 1bc (444) 1b
 func ClearScreen() {
 	fmt.Print(clsAnsicode)
+}
+
+//
+//		a r r a y  f u n c t i o n s
+//
+
+// ReverseSlice of any time
+func ReverseSlice[T any](s []T) {
+	first := 0
+	last := len(s) - 1
+	for first < last {
+		s[first], s[last] = s[last], s[first]
+		first++
+		last--
+	}
+}
+
+// Make2D return matrix [][] of any type of size n,m using generics
+func Make2D[T any](n, m int) [][]T {
+	matrix := make([][]T, n)
+	rows := make([]T, n*m)
+	for i, startRow := 0, 0; i < n; i, startRow = i+1, startRow+m {
+		endRow := startRow + m
+		matrix[i] = rows[startRow:endRow:endRow]
+	}
+	return matrix
+}
+
+// Map runs a function on every item of any type in array
+// Example multi with 2 and convert to string:
+// s := []int{2, 4, 8, 11}
+// ds := Map(s, func(i int) string {return strconv.Itoa(2*i)})
+// Example Create a ny array of uppcase names:
+// names := []string{"joe", "mike", "sue"}
+// namesUpper := Map(names, strings.ToUpper)
+func Map[T, U any](s []T, f func(T) U) []U {
+	r := make([]U, len(s))
+	for i, v := range s {
+		r[i] = f(v)
+	}
+	return r
+}
+
+// Filter returns part of array that complies to a func filter
+// Example return a list of even number:
+// evens := Filter(s, func(i int) bool {return i % 2 == 0})
+func Filter[T any](s []T, f func(T) bool) []T {
+	var r []T
+	for _, v := range s {
+		if f(v) {
+			r = append(r, v)
+		}
+	}
+	return r
+}
+
+// Reduce run a math function on array return the result
+// Example:
+// s := []int{1, 2, 3, 4, 5}
+// product := Reduce(s, 1, func(a, b int) int {return a*b})
+// sum := Reduce(s, 1, func(a, b int) int {return a+b})
+// name := []string{"One","Two","Three"}
+// longstring := Reduce(s, 1, func(a, b int) int {return a+b})
+func Reduce[T, U any](s []T, init U, f func(U, T) U) U {
+	r := init
+	for _, v := range s {
+		r = f(r, v)
+	}
+	return r
+}
+
+// Find seek value in a array of any type using a function
+// Example find name Chris
+//
+//	people := []Person{
+//		Person{Name: "Kent Beck"},
+//		Person{Name: "Martin Fowler"},
+//		Person{Name: "Chris James"},
+//	}
+//	king, found := Find(people, func(p Person) bool {
+//		return strings.Contains(p.Name, "Chris")
+//	})
+func Find[A any](items []A, predicate func(A) bool) (value A, found bool) {
+	for _, v := range items {
+		if predicate(v) {
+			return v, true
+		}
+	}
+	return
 }

@@ -1,4 +1,4 @@
-// Package snickerboa Stack of []interface{} methods: NewStack, Push, Pop, Peek, IsEmpty, Size
+// Stack of []interface{} methods: NewStack, Push, Pop, Peek, IsEmpty, Size
 // Source chat.openai.com
 package snickerboa
 

@@ -69,7 +69,7 @@ func TestStackPopMix(t *testing.T) {
 }
 
 func FuzzStackInt(f *testing.F) {
-b	f.Add(10)
+	f.Add(10)
 
 	s := NewStack()
 
