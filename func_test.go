@@ -144,3 +144,21 @@ func TestFind(t *testing.T) {
 		t.Errorf("got %v wanted %v\n", got, want)
 	}
 }
+
+func TestIf(t *testing.T) {
+	gender := "male"
+	sex := If(gender == "male", "boy", "girl")
+	want := "boy"
+	if sex != want {
+		t.Errorf("got %s wanted %s\n", sex, want)
+	}
+}
+
+func TestIf2(t *testing.T) {
+	a, b := "a", "b"
+	got := If(strings.Compare(a, b) == 0, a, b)
+	want := "b"
+	if got != want {
+		t.Errorf("got %s wanted %s\n", got, want)
+	}
+}

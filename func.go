@@ -374,3 +374,17 @@ func Find[A any](items []A, predicate func(A) bool) (value A, found bool) {
 	}
 	return
 }
+
+// If Go replacement for ternary using generic,
+// Example:
+// gender := "male"
+// sex := If(gender == "male", "boy", "girl)
+// expectancy .= If(gender == "male",74,80)
+// Example2:
+// samestring := If(string.Compare(a,b)==0,a,b)
+func If[T any](cond bool, trueValue, falseValue T) T {
+	if cond {
+		return trueValue
+	}
+	return falseValue
+}
